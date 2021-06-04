@@ -17,7 +17,7 @@ public class ProductManagerTest {
      Product book2=new Book(2,"Book2",300,"Author2");
      Product book3=new Book(3,"Book3",200, "Author3");
      Product smartphone1 =new Smartphone(5,"Smartphone1",4000,"Producer1");
-     Product smartphone2 =new Smartphone(6,"Smartphone2",5000,"Producer2");
+     Product smartphone2 =new Smartphone(6,"Smartphone2",5000,"Producer3");
      Product smartphone3 =new Smartphone(7,"Smartphone3",8000,"Producer3");
 
     @Before
@@ -62,7 +62,18 @@ public class ProductManagerTest {
 
         assertArrayEquals(expected, actual);
     }
+    @Test
+    public void shouldNotFind() {
+        Product[] actual = manager.searchBy("warning");
+        Product[] expected = new Product[0];
+        assertArrayEquals(expected, actual);
+    }
 
-
+    @Test
+    public void shouldSearchBySameProducer(){
+        Product[] actual=manager.searchBy("Producer3");
+        Product[] expected= new Product[]{smartphone2, smartphone3};
+        assertArrayEquals(expected, actual);
 
 }
+    }
